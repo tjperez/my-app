@@ -1,32 +1,34 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Home } from "./components/Home";
-import { About } from "./components/About";
-import { Student } from "./components/Student";
-import { Contact } from "./components/Contact";
+import { Student } from "./Student";
+import { Campus } from "./components/Campus";
 import { NoMatch } from "./components/NoMatch";
 import { Layout } from "./components/Layout";
 import { NavigationBar } from "./components/NavigationBar";
 import { Jumbotron } from "./components/Jumbotron";
+// import UserTable from './tables/UserTable'
+// import AddUserForm from './forms/AddUserForm'
+// import EditUserForm from './forms/EditUserForm'
 
-function App() {
+const App = () => {
+
   return (
     //wrapper for components
-    <React.Fragment>
+    <Fragment>
       <Router>
         <NavigationBar />
         <Jumbotron />
         <Layout>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} />
+            <Route path="/campus" component={Campus} />
             <Route path="/student" component={Student} />
             <Route component={NoMatch} />
           </Switch>
         </Layout>
       </Router>
-    </React.Fragment>
+    </Fragment>
   );
 }
 

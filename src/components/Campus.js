@@ -1,8 +1,8 @@
 import React from "react";
 
-export const Contact = () => (
+export const Campus = () => (
   <div>
-    <h2>Contact Page</h2>
+    <h2>Campus Page</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
