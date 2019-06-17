@@ -1,5 +1,6 @@
 body {
   margin: 0;
+   background-color: #FFA500;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -15,7 +16,7 @@ code {
 /*! Primitive
  * A front end Sass boilerplate
  *
- * Author: Tania Rascia 
+ * Author: Tania Rascia
  */
 /* Variables
  * ===============

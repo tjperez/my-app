@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import AddUserForm from "./forms/AddUserForm";
 import EditUserForm from "./forms/EditUserForm";
 import UserTable from "./tables/UserTable";
+import students from './Students.jpeg'
 
 
 export const Student = () => {
@@ -66,6 +67,7 @@ export const Student = () => {
           <h2>View Student</h2>
           <UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
         </div>
+        <img src={students} alt=""/>
       </div>
     </div>
   );
