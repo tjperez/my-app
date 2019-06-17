@@ -1,21 +1,39 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import AddUserForm from "./forms/AddUserForm";
 import EditUserForm from "./forms/EditUserForm";
 import UserTable from "./tables/UserTable";
 
+
 export const Student = () => {
-  const usersData = [
-    { id: 1, name: "Steve", username: "steve123@gmail.com" },
-    { id: 2, name: "Junior", username: "tj23@gmail.com" },
-    { id: 3, name: "Tamvir", username: "Tamvir@gmail.com" }
-  ];
-
-  const initialFormState = { id: null, name: "", username: "" };
-
   // Setting state
-  const [users, setUsers] = useState(usersData);
-  const [currentUser, setCurrentUser] = useState(initialFormState);
+  const [users, setUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState({ id: null, name: "", username: "" });
   const [editing, setEditing] = useState(false);
+  
+  useEffect(() => {
+    fetch('/users')
+    .then(res => res.json())
+    .then(usersData => setUsers(usersData));
+  }, []);
+
+  postNewUser(async (body) => {
+    try {
+      const response = fetch('/users/add', {
+        method: 'POST',
+        body: body && JSON.stringify(body),
+        mode: 'cors', 
+          cache: 'no-cache', 
+          credentials: 'same-origin', 
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      });
+      return await response.json();
+    }
+    catch(err) {
+      console.log(err);
+    }
+  })
 
   // CRUD operations
   const addUser = user => {
@@ -59,7 +77,7 @@ export const Student = () => {
           ) : (
             <Fragment>
               <h2>Add student</h2>
-              <AddUserForm addUser={addUser} />
+              <AddUserForm onSubmit={() => this.postNewUser()} />
             </Fragment>
           )}
         </div>
@@ -67,14 +85,6 @@ export const Student = () => {
           <h2>View Student</h2>
           <UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
         </div>
-      </div>
-
-      <div className="flex-large">
-        <h2>Add new student</h2>
-        <form action="http://localhost:3001/crud" method="POST">
-          <input name="fname" value="TJ" />
-          <input type="submit" value="submit" />
-        </form>
       </div>
     </div>
   );

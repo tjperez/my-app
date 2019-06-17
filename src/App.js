@@ -7,12 +7,13 @@ import { NoMatch } from "./components/NoMatch";
 import { Layout } from "./components/Layout";
 import { NavigationBar } from "./components/NavigationBar";
 import { Jumbotron } from "./components/Jumbotron";
-// import UserTable from './tables/UserTable'
-// import AddUserForm from './forms/AddUserForm'
-// import EditUserForm from './forms/EditUserForm'
+import { connect } from "react-redux";
+
+const mapStateToProps = state => ({
+  ...state
+});
 
 const App = () => {
-
   return (
     //wrapper for components
     <Fragment>
@@ -30,6 +31,6 @@ const App = () => {
       </Router>
     </Fragment>
   );
-}
+};
 
-export default App;
+export default connect(mapStateToProps)(App);
