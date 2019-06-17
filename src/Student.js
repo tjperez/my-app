@@ -9,31 +9,12 @@ export const Student = () => {
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState({ id: null, name: "", username: "" });
   const [editing, setEditing] = useState(false);
-  
+
   useEffect(() => {
     fetch('/users')
     .then(res => res.json())
     .then(usersData => setUsers(usersData));
   }, []);
-
-  postNewUser(async (body) => {
-    try {
-      const response = fetch('/users/add', {
-        method: 'POST',
-        body: body && JSON.stringify(body),
-        mode: 'cors', 
-          cache: 'no-cache', 
-          credentials: 'same-origin', 
-          headers: {
-              'Content-Type': 'application/json',
-          },
-      });
-      return await response.json();
-    }
-    catch(err) {
-      console.log(err);
-    }
-  })
 
   // CRUD operations
   const addUser = user => {
@@ -77,7 +58,7 @@ export const Student = () => {
           ) : (
             <Fragment>
               <h2>Add student</h2>
-              <AddUserForm onSubmit={() => this.postNewUser()} />
+              <AddUserForm />
             </Fragment>
           )}
         </div>

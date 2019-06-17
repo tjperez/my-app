@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/add', (req, res) => {
-  console.log(req);
   let { username, email } = req.body;
   let errors = [];
 
@@ -30,9 +29,10 @@ router.post('/add', (req, res) => {
       email
     });
   } else {
+    console.log("Served Req user", req.body.username);
     //insert into table
     User.create({
-      name,
+      username,
       email
     })
       .then(user => res.json([{newuser: user}]))
